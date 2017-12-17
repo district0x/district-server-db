@@ -45,6 +45,7 @@ You can pass following args to smart-contracts module:
 Note: You can use namespaced keywords for SQL column and table names and also get them back from selects. This is because `district.server.db` extends honeysql name transformation with [munge](https://cljs.github.io/api/cljs.core/munge), [demunge](https://cljs.github.io/api/cljs.core/demunge) functions.
 
 `district.server.db` also includes [honeysql-postgres](https://github.com/nilenso/honeysql-postgres) extensions, so that's why we could use statements such as `:create-table` in example, which are not supported by honeysql by default.
+Beware that not all postgres queries are compatible with sqlite3. We may create dedicated one for sqlite3 in future.
 
 ## Component dependencies
 
