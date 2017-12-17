@@ -27,20 +27,20 @@ You can pass following args to smart-contracts module:
   (println @db)
   ;; #object[Database [object Database]] (Sqlite3 Database Connection)
 
-  (database/run! {:create-table :my-table
-                  :with-columns [[[:something/anything :unsigned :integer]
-                                  [:something/other-thing :varchar]]]})
+  (database/run! {:create-table :my-doggos
+                  :with-columns [[[:doggo/years :unsigned :integer]
+                                  [:doggo/description :varchar]]]})
   ;; => "{:changes 0, :lastInsertROWID 0}"
 
-  (database/run! {:insert-into :my-table
-                  :columns [:something/anything :something/other-thing]
-                  :values [[1 "Hello"]]})
+  (database/run! {:insert-into :my-doggos
+                  :columns [:doggo/years :doggo/description]
+                  :values [[1 "Good boy"]]})
   ;; => "{:changes 1, :lastInsertROWID 1}"
 
-  (database/get {:select [:something/other-thing]
-                 :from [:my-table]
-                 :where [:= :something/anything 1]})
-  ;; => {:something/other-thing "Hello"}
+  (database/get {:select [:doggo/description]
+                 :from [:my-doggos]
+                 :where [:= :doggo/years 1]})
+  ;; => {:doggo/description "Good boy"}
 ```
 Note: You can use namespaced keywords for SQL column and table names and also get them back from selects. This is because `district.server.db` extends honeysql name transformation with [munge](https://cljs.github.io/api/cljs.core/munge), [demunge](https://cljs.github.io/api/cljs.core/demunge) functions.
 
@@ -64,11 +64,11 @@ Gets single result. Runs sqlite3 [get](https://github.com/JoshuaWise/better-sqli
 #### `all [sql-map]`
 Gets list of results. Runs sqlite3 [all](https://github.com/JoshuaWise/better-sqlite3/wiki/API#allbindparameters---array-of-rows).
 
-#### `->count-query [sql-map & [opts]]`
+#### `total-count-query [sql-map & [opts]]`
 Takes honeysql sql-map and converts it to one that has same conditions, but no offset, limit, ordering and selects count. Useful when you need to get total count of result, e.g for pagination. 
 
 #### `total-count [sql-map & [opts]]`
-Converts sql-map with `->count-query` and then runs query. Returns only single total count number. 
+Converts sql-map with `total-count-query` and then runs query. Returns only single total count number. 
 
 #### `order-by-similarity [column-name string opts]`
 Helper function to create honeysql statement for `:order-by`, to order by most similar string. This is not full-text search, only done by SQL's `LIKE`. 

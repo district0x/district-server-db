@@ -57,8 +57,8 @@
          (js->clj (.all (.prepare @db query) (clj->js (or values [])))))))
 
 
-(defn ->count-query [sql-map & [{:keys [:count-distinct-column :count-select]
-                                 :or {count-select [:%count.*]}}]]
+(defn total-count-query [sql-map & [{:keys [:count-distinct-column :count-select]
+                                     :or {count-select [:%count.*]}}]]
   (let [select (if (contains? (set (:modifiers sql-map)) :distinct)
                  [(sql/call :count-distinct (or count-distinct-column (first (:select sql-map))))]
                  count-select)]
@@ -68,7 +68,7 @@
 
 
 (defn total-count [sql-map & [opts]]
-  (second (first (get (->count-query sql-map opts)))))
+  (second (first (get (total-count-query sql-map opts)))))
 
 
 (defn order-by-similarity [col-name s & [{:keys [:suffix :prefix]}]]
