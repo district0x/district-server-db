@@ -1,5 +1,7 @@
 # district-server-db
 
+[![Build Status](https://travis-ci.org/district0x/district-server-db.svg?branch=master)](https://travis-ci.org/district0x/district-server-db)
+
 Clojurescript-node.js [mount](https://github.com/tolitius/mount) component for a district server, that takes care of database, which usually stores blockchain data in more search-friendly format. This component currently utilises [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) for db and [honeysql](https://github.com/jkk/honeysql) for SQL formatting.
 
 ## Installation
@@ -81,4 +83,17 @@ This namespace defines additional honeysql extensions for working with sqlite3:
 
 ## district.server.db.column-types
 Contains most common types for convenience, when creating SQL tables
+## Development
+```bash
+# To start REPL and run tests
+lein deps
+lein repl
+(start-tests!)
+
+# In other terminal
+node tests-compiled/run-tests.js
+
+# To run tests without REPL
+lein doo node "tests" once
+```
 
