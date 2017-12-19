@@ -1,9 +1,9 @@
-(defproject district0x/district-server-db "1.0.0"
+(defproject district0x/district-server-db "1.0.1"
   :description "district0x server component for setting up database connection"
   :url "https://github.com/district0x/district-server-db"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :dependencies [[district0x/district-server-config "1.0.0"]
+  :dependencies [[district0x/district-server-config "1.0.1"]
                  ;[honeysql "0.9.1"]
                  ;; Until PR https://github.com/jkk/honeysql/pull/195 is merged
                  [madvas/honeysql "0.9.1"]
