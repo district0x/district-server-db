@@ -1,5 +1,5 @@
 (defproject district0x/district-server-db "1.0.1"
-  :description "district0x server component for setting up database connection"
+  :description "district0x server module for setting up database connection"
   :url "https://github.com/district0x/district-server-db"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}

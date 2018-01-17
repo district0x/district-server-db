@@ -2,13 +2,23 @@
 
 [![Build Status](https://travis-ci.org/district0x/district-server-db.svg?branch=master)](https://travis-ci.org/district0x/district-server-db)
 
-Clojurescript-node.js [mount](https://github.com/tolitius/mount) component for a district server, that takes care of database, which usually stores blockchain data in more search-friendly format. This component currently utilises [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) for db and [honeysql](https://github.com/jkk/honeysql) for SQL formatting.
+Clojurescript-node.js [mount](https://github.com/tolitius/mount) module for a district server, that takes care of database, which usually stores blockchain data in more search-friendly format. This module currently utilises [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) for db and [honeysql](https://github.com/jkk/honeysql) for SQL formatting.
 
 ## Installation
 Add `[district0x/district-server-db "1.0.1"]` into your project.clj  
 Include `[district.server.db]` in your CLJS file, where you use `mount/start`
 
-**Warning:** district0x components are still in early stages, therefore API can change in a future.
+## API Overview
+
+**Warning:** district0x modules are still in early stages, therefore API can change in a future.
+
+- [district.server.db](#districtserverdb)
+  - [run!](#run!)
+  - [get](#get)
+  - [all](#all)
+  - [total-count-query](#total-count-query)
+  - [total-count](#total-count)
+  - [order-by-similarity](#order-by-similarity)
 
 ## Usage
 You can pass following args to smart-contracts module: 
@@ -22,7 +32,7 @@ You can pass following args to smart-contracts module:
               [district.server.db :as database :refer [db]]))
 
   (-> (mount/with-args
-        ;; This is default, so not really needed, but here just to show how to pass args to the component
+        ;; This is default, so not really needed, but here just to show how to pass args to the module
         {:db {:sqlite3-opts {:memory true}}})
     (mount/start))
 
@@ -49,31 +59,31 @@ Note: You can use namespaced keywords for SQL column and table names and also ge
 `district.server.db` also includes [honeysql-postgres](https://github.com/nilenso/honeysql-postgres) extensions, so that's why we could use statements such as `:create-table` in example, which are not supported by honeysql by default.
 Beware that not all postgres queries are compatible with sqlite3. We may create dedicated one for sqlite3 in future.
 
-## Component dependencies
+## Module dependencies
 
 ### [district-server-config](https://github.com/district0x/district-server-config)
 `district-server-db` can get initial args from config provided by `district-server-config/config` under the key `:db`. These args are then merged together by ones passed to `mount/with-args`.
 
-If you wish to use custom components instead of dependencies above while still using `district-server-db`, you can easily do so by [mount's states swapping](https://github.com/tolitius/mount#swapping-states-with-states).
+If you wish to use custom modules instead of dependencies above while still using `district-server-db`, you can easily do so by [mount's states swapping](https://github.com/tolitius/mount#swapping-states-with-states).
 
 ## district.server.db
 This namespace contains following functions for working with database:
-#### `run! [sql-map]`
+#### <a name="run!">`run! [sql-map]`
 Runs sqlite3 [run](https://github.com/JoshuaWise/better-sqlite3/wiki/API#runbindparameters---object).
 
-#### `get [sql-map]`
+#### <a name="get">`get [sql-map]`
 Gets single result. Runs sqlite3 [get](https://github.com/JoshuaWise/better-sqlite3/wiki/API#getbindparameters---row).
 
-#### `all [sql-map]`
+#### <a name="all">`all [sql-map]`
 Gets list of results. Runs sqlite3 [all](https://github.com/JoshuaWise/better-sqlite3/wiki/API#allbindparameters---array-of-rows).
 
-#### `total-count-query [sql-map & [opts]]`
+#### <a name="total-count-query">`total-count-query [sql-map & [opts]]`
 Takes honeysql sql-map and converts it to one that has same conditions, but no offset, limit, ordering and selects count. Useful when you need to get total count of result, e.g for pagination. 
 
-#### `total-count [sql-map & [opts]]`
+#### <a name="total-count">`total-count [sql-map & [opts]]`
 Converts sql-map with `total-count-query` and then runs query. Returns only single total count number. 
 
-#### `order-by-similarity [column-name string opts]`
+#### <a name="order-by-similarity">`order-by-similarity [column-name string opts]`
 Helper function to create honeysql statement for `:order-by`, to order by most similar string. This is not full-text search, only done by SQL's `LIKE`. 
 
 ## district.server.db.honeysql-extensions
