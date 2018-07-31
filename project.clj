@@ -1,4 +1,4 @@
-(defproject district0x/district-server-db "1.0.2"
+(defproject district0x/district-server-db "1.0.3"
   :description "district0x server module for setting up database connection"
   :url "https://github.com/district0x/district-server-db"
   :license {:name "Eclipse Public License"
