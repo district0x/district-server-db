@@ -1,4 +1,4 @@
-(ns tests.all
+(ns tests.main-test
   (:require
     [cljs.test :refer-macros [deftest is testing use-fixtures]]
     [district.server.db :as db :refer [db]]
@@ -16,7 +16,7 @@
 (deftest test-db
   (is (= (str @db) "[object Database]"))
 
-  (is (map? (db/run! {:create-table :my-doggos
+  (is (map? (db/run! {:create-table [:my-doggos]
                       :with-columns [[[:doggo/years :unsigned :integer]
                                       [:doggo/description :varchar]]]})))
 
