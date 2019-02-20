@@ -2,11 +2,11 @@
   (:require
     [cljs.nodejs :as nodejs]
     [cljs.test :refer [run-tests]]
-    [tests.all]))
+    [tests.main-test]))
 
 (nodejs/enable-util-print!)
 
 (defn -main [& _]
-  (run-tests 'tests.all))
+  (run-tests 'tests.main-test))
 
 (set! *main-cli-fn* -main)

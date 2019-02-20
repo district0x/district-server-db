@@ -17,7 +17,7 @@
   :stop (stop db))
 
 (def Sqlite3Database (js/require "better-sqlite3"))
-(def *transform-result-keys-fn* (atom nil))
+(def ^:dynamic *transform-result-keys-fn* (atom nil))
 
 (defn start [{:keys [:path :opts :transform-result-keys-fn :sql-name-transform-fn]
               :or {path "db.db"
