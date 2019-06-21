@@ -9,7 +9,7 @@
                  [nilenso/honeysql-postgres "0.2.5" :exclusions [honeysql]]
                  [org.clojure/clojurescript "1.10.520"]]
 
-  :npm {:dependencies [[better-sqlite3 "4.1.4"]]
+  :npm {:dependencies [[better-sqlite3 "5.4.0"]]
         :devDependencies [[ws "2.0.1"]]}
 
   :figwheel {:server-port 4678}
