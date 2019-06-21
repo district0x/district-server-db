@@ -37,3 +37,6 @@
 (defmethod sql-format/format-clause :on [[_ [tablename column]] _]
   (str "ON " (get-first (to-sql tablename)) " " (paren-wrap (to-sql column))))
 
+
+(defmethod sql-format/format-clause :cascade [[op v] _]
+  (when v (str "CASCADE" )))
