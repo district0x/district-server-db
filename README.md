@@ -5,7 +5,9 @@
 Clojurescript-node.js [mount](https://github.com/tolitius/mount) module for a district server, that takes care of database, which usually stores blockchain data in more search-friendly format. This module currently utilises [better-sqlite3](https://github.com/JoshuaWise/better-sqlite3) for db and [honeysql](https://github.com/jkk/honeysql) for SQL formatting.
 
 ## Installation
-Add `[district0x/district-server-db "1.0.3"]` into your project.clj  
+Latest released version of this library: <br>
+[![Clojars Project](https://img.shields.io/clojars/v/district0x/district-server-db.svg)](https://clojars.org/district0x/district-server-db) <br>
+
 Include `[district.server.db]` in your CLJS file, where you use `mount/start`
 
 ## API Overview
