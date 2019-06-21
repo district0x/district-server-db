@@ -27,6 +27,18 @@
                              [lein-doo "0.1.11"]]
                    :source-paths ["dev"]}}
 
+  :deploy-repositories [["snapshots" {:url "https://clojars.org/repo"
+                                      :username :env/clojars_username
+                                      :password :env/clojars_password
+                                      :sign-releases false}]
+                        ["releases"  {:url "https://clojars.org/repo"
+                                      :username :env/clojars_username
+                                      :password :env/clojars_password
+                                      :sign-releases false}]]
+
+  :release-tasks [["change" "version" "leiningen.release/bump-version" "release"]
+                  ["deploy"]]
+
   :cljsbuild {:builds [{:id "dev"
                         :source-paths ["src" "dev" "test"]
                         :figwheel true
