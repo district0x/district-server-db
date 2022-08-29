@@ -7,7 +7,8 @@
     [honeysql-postgres.format]
     [honeysql.core :as sql]
     [honeysql.format :as sql-format]
-    [mount.core :as mount :refer [defstate]]))
+    [mount.core :as mount :refer [defstate]]
+    ["better-sqlite3" :as Sqlite3Database]))
 
 (declare start)
 (declare stop)
@@ -16,12 +17,10 @@
                        (:db (mount/args))))
   :stop (stop db))
 
-(def Sqlite3Database (js/require "better-sqlite3"))
 (def ^:dynamic *transform-result-keys-fn* (atom nil))
 
 (defn start [{:keys [:path :opts :transform-result-keys-fn :sql-name-transform-fn]
-              :or {path "db.db"
-                   opts {:memory true}
+              :or {path ":memory:"
                    sql-name-transform-fn (comp #(string/replace % "_STAR_" "*")
                                                #(string/replace % "_PERCENT_" "%")
                                                munge)
